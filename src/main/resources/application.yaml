@@ -9,4 +9,4 @@ server:
     key-alias: api-server.skshukla.com
     trust-store: classpath:myserver_truststore.jks
     trust-store-password: 12345678
-#    client-auth: need
+    client-auth: need

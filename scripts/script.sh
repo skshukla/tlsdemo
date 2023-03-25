@@ -2,15 +2,17 @@
 #SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # SET THIS VARIABLE ACCORDING TO YOUR PATH
-PROJ_DIR=/Users/sachin/work/workspaces/ws/tlsdemo
+#PROJ_DIR=/Users/sachin/work/workspaces/ws/tlsdemo
+PROJ_DIR=/home/sachin/work/tlsdemo
 
 # --------------------------------------
 ROOT_CA_CN="api-ca.skshukla.com"
-  SERVER_CN="api-server.skshukla.com"
+SERVER_CN="api-server.skshukla.com"
 CLIENT_CN="api-client.skshukla.com"
 # --------------------------------------
 
 CERT_DIR=$PROJ_DIR/work/certs
+mkdir -p $CERT_DIR
 rm -rf $CERT_DIR/*.*
 rm -rf $PROJ_DIR/src/main/resources/*.jks
 rm -rf $PROJ_DIR/src/main/resources/*.p12
@@ -33,6 +35,8 @@ openssl x509 -req -CA $CERT_DIR/rootCA.crt -CAkey $CERT_DIR/rootCA.key -in $CERT
 
 
 # openssl x509 -in api_gateway.crt -text
+
+  # keytool -list -v -keystore myserver_truststore.jks
 
 
 openssl pkcs12 -export -out $CERT_DIR/server.p12 -name "${SERVER_CN}" -inkey $CERT_DIR/server.key -in $CERT_DIR/server.crt -passin pass:12345678 -password pass:12345678
